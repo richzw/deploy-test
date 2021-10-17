@@ -35,10 +35,10 @@ router.post('/:repo', async (ctx) => {
         await exec(`git checkout main`, {
           cwd: source
         });
-        // console.log(`git pull`);
-        // await exec(`git pull`, {
-        //   cwd: source
-        // });
+        console.log(`git pull`);
+        await exec(`git pull`, {
+          cwd: source
+        });
         // console.log(`npm install`);
         // await exec(`npm install`, {
         //   cwd: source
