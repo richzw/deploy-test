@@ -19,12 +19,17 @@ const source = `/Users/zangw/Work/deploy-test`; // `/home/ec2-user/zang.wei/depl
 router.post('/:repo', async (ctx) => {
   try {
     if (ctx.params.repo == 'deploy-test') {
-      console.log(ctx.request.body);
+      console.log(SSH_AUTH_SOCK);
+      console.log(SSH_AGENT_PID);
       const ref = ctx.request.body.ref;
       if (ref.indexOf('master') != -1) {
         console.log(`git reset --hard && git clean -f`);
         await exec(`git reset --hard && git clean -f`, {
-          cwd: source
+          cwd: source,
+          env: {
+            SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK,
+            SSH_AGENT_PID: process.env.SSH_AGENT_PID
+          }
         });
         console.log(`git checkout master`);
         await exec(`git checkout master`, {
