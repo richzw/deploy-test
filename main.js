@@ -1,8 +1,11 @@
 const Koa = require('koa');
 const Router = require('koa-router');
+const koaBody = require('koa-body');
 
 const app = new Koa();
 const router = new Router();
+
+app.use(koaBody());
 
 router
     .get('/', ctx => {
@@ -16,6 +19,7 @@ const source = `/home/ec2-user/zang.wei/deploy-test`;
 router.post('/:repo', async (ctx) => {
   try {
     if (ctx.params.repo == 'deploy-test') {
+      console.log(ctx.request.body);
       const ref = ctx.request.body.ref;
       if (ref.indexOf('master') != -1) {
         console.log(`git reset --hard && git clean -f`);
