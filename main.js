@@ -15,7 +15,7 @@ const exec = util.promisify(child.exec);
 const source = `/home/ec2-user/zang.wei/deploy-test`;
 router.post('/:repo', async (ctx) => {
   try {
-    if (ctx.params.repo == 'videomaker.cool') {
+    if (ctx.params.repo == 'deploy-test') {
       const ref = ctx.request.body.ref;
       if (ref.indexOf('master') != -1) {
         console.log(`git reset --hard && git clean -f`);
@@ -59,5 +59,5 @@ router.post('/:repo', async (ctx) => {
 
 
 app.use(router.routes());
-
-app.listen(9010);
+const port = 9010;
+app.listen(port, () => console.log(`server start on ${port}`));
