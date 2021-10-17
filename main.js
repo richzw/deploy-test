@@ -19,8 +19,8 @@ const source = `/home/ec2-user/zang.wei/deploy-test`;
 router.post('/:repo', async (ctx) => {
   try {
     if (ctx.params.repo == 'deploy-test') {
-      console.log(SSH_AUTH_SOCK);
-      console.log(SSH_AGENT_PID);
+      console.log(process.env.SSH_AUTH_SOCK);
+      console.log(process.env.SSH_AGENT_PID);
       const ref = ctx.request.body.ref;
       if (ref.indexOf('master') != -1) {
         console.log(`git reset --hard && git clean -f`);
