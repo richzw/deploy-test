@@ -26,13 +26,13 @@ router.post('/:repo', async (ctx) => {
         console.log(`git reset --hard && git clean -f`);
         await exec(`git reset --hard && git clean -f`, {
           cwd: source,
-          env: {
-            SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK,
-            SSH_AGENT_PID: process.env.SSH_AGENT_PID
-          }
+          // env: {
+          //   SSH_AUTH_SOCK: process.env.SSH_AUTH_SOCK,
+          //   SSH_AGENT_PID: process.env.SSH_AGENT_PID
+          // }
         });
-        console.log(`git checkout master`);
-        await exec(`git checkout master`, {
+        console.log(`git checkout main`);
+        await exec(`git checkout main`, {
           cwd: source
         });
         // console.log(`git pull`);
