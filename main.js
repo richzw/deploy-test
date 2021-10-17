@@ -15,7 +15,7 @@ router
 var child = require('child_process');
 var util = require('util');
 const exec = util.promisify(child.exec);
-const source = `/Users/zangw/Work/deploy-test`; // `/home/ec2-user/zang.wei/deploy-test`;
+const source = `/home/ec2-user/zang.wei/deploy-test`; 
 router.post('/:repo', async (ctx) => {
   try {
     if (ctx.params.repo == 'deploy-test') {
